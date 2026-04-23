@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Message</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Edit Message</h1>
+
+  <form action="/messages/edit/<%= message._id %>" method="POST">
+    
+    <input name="message" value="<%= message.message %>">
+    
+    <button type="submit">Save Message</button>
+    <a href="/">Cancel</a>
+  </form>
+</body>
+</html>
