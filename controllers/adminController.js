@@ -16,7 +16,7 @@ export const loadPage = async (req, res) => {
 //ADMIN PAGE
 export const adminLogin = async (req, res) => {
   try {
-	
+	res.send("hi")
   } 
   
   catch (err) {

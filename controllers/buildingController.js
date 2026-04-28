@@ -1,22 +1,22 @@
-import User from "../models/User.js"; 
+import Building from "../models/Building.js"; 
 // CREATE USER
-export const createUser = async (req, res) => {
+export const createBuilding = async (req, res) => {
   try {
-	await User.create({ name: req.body.name });
+	await Building.create({ name: req.body.name });
 	res.redirect("/");
   } catch (err) {
 	console.error(err);
-	res.status(500).send("Error creating user");
+	res.status(500).send("Error creating building");
   }
 };
 
-// DELETE USER
-export const deleteUser = async (req, res) => {
+// DELETE BUILDING
+export const deleteBuilding = async (req, res) => {
   try {
-	await User.findByIdAndDelete(req.params.id);
+	await Building.findByIdAndDelete(req.params.id);
 	res.redirect("/");
   } catch (err) {
 	console.error(err);
-	res.status(500).send("Error deleting user");
+	res.status(500).send("Error deleting building");
   }
 };
