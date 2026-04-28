@@ -13,10 +13,10 @@ export const loadPage = async (req, res) => {
   }
 };
 
-//ADMIN PAGE
+//ADMIN LOGIN PAGE
 export const adminLogin = async (req, res) => {
   try {
-	res.send("hi")
+	res.send("Hi there! If you are an admin, enter your username and password to log in :)")
   } 
   
   catch (err) {
@@ -25,6 +25,17 @@ export const adminLogin = async (req, res) => {
   }
 };
 
+//ADMIN DASHBOARD
+export const adminDashboard = async (req, res) => {
+  try {
+	await Admin.findById(req.params.id)
+  } 
+  
+  catch (err) {
+	console.error(err);
+	res.status(500).send("Error loading page");
+  }
+};
 
 
 // CREATE MESSAGE
