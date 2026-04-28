@@ -1,10 +1,13 @@
 import express from 'express'
 export const router = express.Router()
-import {loadPage, createMessage, deleteMessage, editMessage, saveMessage} from '../controllers/messageController.js'
-import {createUser, deleteUser} from '../controllers/userController.js'
-//import * as messageController from '..controllers/messageController.js'
+import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin} from '../controllers/adminController.js'
+import {createUser, deleteUser} from '../controllers/buildingController.js'
+
 // HOME PAGE
 router.get("/", loadPage);
+
+//ADMIN PAGE
+router.get("/admin", adminLogin)
 
 // CREATE MESSAGE
 router.post("/messages", createMessage);
@@ -23,3 +26,5 @@ router.post("/users", createUser);
 
 // DELETE USER
 router.post("/users/delete/:id", deleteUser);
+
+

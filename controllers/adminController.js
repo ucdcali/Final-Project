@@ -1,17 +1,31 @@
-import Message from '../models/Message.js'
-import User from '../models/User.js'
+import Admin from '../models/Admin.js'
+import Building from '../models/Building.js'
 
 // HOME PAGE
 export const loadPage = async (req, res) => {
   try {
-	const messages = await Message.find();
-	const users = await User.find();
-	res.render("index", { messages, users });
-  } catch (err) {
+	
+  } 
+  
+  catch (err) {
 	console.error(err);
 	res.status(500).send("Error loading page");
   }
 };
+
+//ADMIN PAGE
+export const adminLogin = async (req, res) => {
+  try {
+	
+  } 
+  
+  catch (err) {
+	console.error(err);
+	res.status(500).send("Error loading page");
+  }
+};
+
+
 
 // CREATE MESSAGE
 export const createMessage = async (req, res) => {
