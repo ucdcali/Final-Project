@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const buildingSchema = new mongoose.Schema({
-  name: String
   name: String,
   buildings: {
     type: Array,
@@ -10,7 +9,8 @@ const buildingSchema = new mongoose.Schema({
   rooms: {
     type: Array,
     required: true
-  }
+  },
+  inUse: Boolean
 });
 
 export default mongoose.model("Building", buildingSchema);
