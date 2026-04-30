@@ -4,7 +4,7 @@ import Building from '../models/Building.js'
 // HOME PAGE
 export const loadPage = async (req, res) => {
   try {
-	res.send('hi');
+	res.render("map")
   } 
   
   catch (err) {
