@@ -30,6 +30,8 @@ export const eventForm = async (req, res) => {
   try {
     const buildings = ("Science Building", "PAC", "Main Building", "Gym", "Library");
     const sbRooms = ("SB70", "SB71", "SB72", "SB73");
+	await Admin.findById(req.params.id);
+	formDetails = req.body;
 	res.render("index", { buildings });
   } 
   
