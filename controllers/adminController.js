@@ -4,7 +4,7 @@ import Building from '../models/Building.js'
 // HOME PAGE
 export const loadPage = async (req, res) => {
   try {
-
+	res.send('hi');
   } 
   
   catch (err) {
@@ -28,7 +28,7 @@ export const adminLogin = async (req, res) => {
 //ADMIN DASHBOARD
 export const adminDashboard = async (req, res) => {
   try {
-	await Admin.findById(req.params.id)
+	res.render("dashboard")
   } 
   
   catch (err) {
