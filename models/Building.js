@@ -6,7 +6,7 @@ const buildingSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
-  rooms: {
+  sbRooms: {
     type: Array,
     required: true
   },

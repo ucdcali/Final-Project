@@ -2,6 +2,7 @@ import express from 'express'
 export const router = express.Router()
 import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard} from '../controllers/adminController.js'
 import {createBuilding, deleteBuilding} from '../controllers/buildingController.js'
+import {eventForm} from '../controllers/eventController.js'
 
 // HOME PAGE
 router.get("/", loadPage);
