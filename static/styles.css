@@ -1,12 +1,26 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   padding: 20px;
 }
 
 form {
   margin-bottom: 10px;
+  padding: 4%;
+  color: white;
+  background-color: #8EBA66;
+  border-radius: 10%;
+}
+
+.formOption{
+ 
 }
 
 button {
   margin-left: 5px;
+  background-color: #47763B;
+  color: white;
+  border-color: #47763B;
+  border-style: none;
+  border-radius: 10%;
+  padding:2%;
 }
