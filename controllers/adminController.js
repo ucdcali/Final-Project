@@ -4,7 +4,7 @@ import Building from '../models/Building.js'
 // HOME PAGE
 export const loadPage = async (req, res) => {
   try {
-	
+
   } 
   
   catch (err) {
@@ -38,7 +38,7 @@ export const adminDashboard = async (req, res) => {
 };
 
 
-// CREATE MESSAGE
+// CREATE ADMIN
 export const createMessage = async (req, res) => {
   try {
 	await Message.create({ message: req.body.message });

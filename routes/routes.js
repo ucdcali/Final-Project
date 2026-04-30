@@ -1,6 +1,6 @@
 import express from 'express'
 export const router = express.Router()
-import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin} from '../controllers/adminController.js'
+import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard} from '../controllers/adminController.js'
 import {createBuilding, deleteBuilding} from '../controllers/buildingController.js'
 
 // HOME PAGE
