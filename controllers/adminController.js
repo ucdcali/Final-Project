@@ -1,10 +1,10 @@
 import Admin from '../models/Admin.js'
 import Building from '../models/Building.js'
-
+import Event from '../models/Event.js'
 // HOME PAGE
 export const loadPage = async (req, res) => {
   try {
-	res.render("index")
+	res.render("map")
   } 
   
   catch (err) {
@@ -28,8 +28,13 @@ export const adminLogin = async (req, res) => {
 //ADMIN DASHBOARD
 export const adminDashboard = async (req, res) => {
   try {
+	newEvent = await Event.create({event: req.body.name,})
+	const events = await Event.find();
 	
 	res.render("dashboard")
+
+	
+
   } 
   
   catch (err) {
