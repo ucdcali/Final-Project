@@ -28,6 +28,7 @@ export const adminLogin = async (req, res) => {
 //ADMIN DASHBOARD
 export const adminDashboard = async (req, res) => {
   try {
+	
 	res.render("dashboard")
   } 
   
