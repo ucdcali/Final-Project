@@ -7,28 +7,48 @@
 <body>
 
   <h1>Event</h1>
-  <form class="form" action="/admin/dashboard" method="POST">
+  <form id="eventForm" class="form" action="/admin/dashboard" method="POST">
     <label><h3>Event Title</h3></label>
-    <input name="event" placeholder="Event title">
+    <input id="event" name="event" placeholder="Event title">
+
+    <h3>Event Description</h3>
+    <input id="description" name="description" placeholder="Breif overview of event">
+
     <h3>Science Building :3c</h3>
     <ul class="formOption">
-      <input type="checkbox" name="sb75" onClick="toggleVisibility(0)" id="sb75">
+      <input type="checkbox" name="1" onClick="toggleVisibility(0)" id="sb75">
       <label for="sb75">SB75</label>
       <input name="sb75" placeholder="Description" style="display:block" id="0">
     </ul>
+
     <ul class="formOption">
-      <input type="checkbox" name="sb74" onClick="toggleVisibility(1)" id="sb74">
+      <input type="checkbox" name="2" onClick="toggleVisibility(1)" id="sb74">
       <label for="sb74">SB74</label>
       <input name="sb74" placeholder="Description" style="display:block" id="1">
     </ul>
+    
     <ul class="formOption">
-      <input type="checkbox" name="sb73" onClick="toggleVisibility(2)" id="sb73">
+      <input type="checkbox" name="3" onClick="toggleVisibility(2)" id="sb73">
       <label for="sb73">SB73</label>
       <input name="sb73" placeholder="Description" style="display:block" id="2">
     </ul>
+    <% buildings.forEach(b => { %>
+      <ul class="formOption">
+          <h3><%= b.building %></h3>
+          <%= i === 0 %>
+          <% buildings.forEach(r => {%>
+            <%= i += 1 %>
+            <input type="checkbox" name=<%=i%>>
+            <label for=<%=i%>><%=b.room[i]%></label> 
+          <% }) %>        
+      </ul>
+    <% }) %>
     <button>Add</button>
   </form>
 
   
 </body>
 </html> 
+<script>
+  var i == 0;
+</script>

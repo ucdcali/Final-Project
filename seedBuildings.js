@@ -10,7 +10,7 @@ await mongoose.connect(process.env.MONGODB_URI)
 
 console.log("Connected to MongoDB")
 
-await Artist.deleteMany({})
+await Building.deleteMany({})
 
 console.log("Old users removed")
 
@@ -93,3 +93,4 @@ const artists = [
         rooms: ["MD1", "MD3", "MD4", "LS/MS offices", "EC24"]
     },
 ]
+Building.insertMany(artists)

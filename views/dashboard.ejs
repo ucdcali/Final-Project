@@ -11,15 +11,10 @@
         <ul>
             <% events.forEach(e => { %>
             <li>
-            <h3><%= e.event %></h3>
-            <p><%= e.description%></p>
-                <form action="/messages/delete/<%= m._id %>" method="POST" style="display:inline;">
-                    <button>Delete</button>
-                </form>
-                <a href="/messages/edit/<%= m._id %>">
-                    <button type="button">Edit</button>
-                </a>
-            </li>
+                <h3><%= e.event %></h3>
+                <p><%= e.description%></p>
+                    
+                </li>
             <% }) %>
         </ul>
     </li>

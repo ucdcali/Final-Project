@@ -28,15 +28,11 @@ export const adminLogin = async (req, res) => {
 //ADMIN DASHBOARD
 export const adminDashboard = async (req, res) => {
   try {
-	newEvent = await Event.create({event: req.body.name,})
+	console.log(req.body)
+	const newEvent = await Event.create({event: req.body.event, description: req.body.description})
 	const events = await Event.find();
-	
-	res.render("dashboard")
-
-	
-
+	res.render("dashboard", {events})
   } 
-  
   catch (err) {
 	console.error(err);
 	res.status(500).send("Error loading page");
