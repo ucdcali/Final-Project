@@ -8,13 +8,13 @@
 
   <h1>Event</h1>
   <form id="eventForm" class="form" action="/admin/dashboard" method="POST">
-    <label><h3>Event Title</h3></label>
+     <label><h3>Event Title</h3></label>
     <input id="event" name="event" placeholder="Event title">
 
     <h3>Event Description</h3>
     <input id="description" name="description" placeholder="Breif overview of event">
 
-    <h3>Science Building :3c</h3>
+    <!-- <h3>Science Building :3c</h3>
     <ul class="formOption">
       <input type="checkbox" name="1" onClick="toggleVisibility(0)" id="sb75">
       <label for="sb75">SB75</label>
@@ -31,15 +31,13 @@
       <input type="checkbox" name="3" onClick="toggleVisibility(2)" id="sb73">
       <label for="sb73">SB73</label>
       <input name="sb73" placeholder="Description" style="display:block" id="2">
-    </ul>
+    </ul> -->
     <% buildings.forEach(b => { %>
       <ul class="formOption">
           <h3><%= b.building %></h3>
-          <%= i === 0 %>
-          <% buildings.forEach(r => {%>
-            <%= i += 1 %>
+          <% b.forEach((r, i) => {%>
             <input type="checkbox" name=<%=i%>>
-            <label for=<%=i%>><%=b.room[i]%></label> 
+            <label for=<%=b.building+i%>><%=b.room[i]%></label> 
           <% }) %>        
       </ul>
     <% }) %>
@@ -49,6 +47,3 @@
   
 </body>
 </html> 
-<script>
-  var i == 0;
-</script>
