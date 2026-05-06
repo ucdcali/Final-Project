@@ -2,15 +2,16 @@ import mongoose from "mongoose";
 
 const buildingSchema = new mongoose.Schema({
   name: String,
-  buildings: {
-    type: Array,
+  building: {
+    type: String,
     required: true
   },
-  sbRooms: {
+  rooms: {
     type: Array,
-    required: true
+    required: true,
   },
   inUse: Boolean
+
 });
 
 export default mongoose.model("Building", buildingSchema);

@@ -20,3 +20,4 @@ export const deleteBuilding = async (req, res) => {
 	res.status(500).send("Error deleting building");
   }
 };
+
