@@ -1,15 +1,14 @@
 import mongoose from "mongoose";
 
 const buildingSchema = new mongoose.Schema({
-  name: String,
   building: {
     type: String,
     required: true
   },
-  rooms: {
-    type: Array,
+  rooms: [ {
+    type: String,
     required: true,
-  },
+  }],
   inUse: Boolean
 
 });

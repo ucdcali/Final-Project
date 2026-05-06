@@ -2,8 +2,11 @@ import mongoose from "mongoose";
 
 const eventSchema = new mongoose.Schema({
     event: String,
-    rooms: String,
-    descriptions: String,
+    rooms: [{
+        location: String,
+        description: String,
+    }],
+    description: String,
     id: String,
     creator: String,
     time: String,

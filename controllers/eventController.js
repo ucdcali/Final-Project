@@ -1,10 +1,9 @@
-import Event from '../models/Event.js'
+import Building from '../models/Building.js'
 
 //EVENT FORM
 export const eventForm = async (req, res) => {
   try {
-    const buildings = ("Science Building", "PAC", "Main Building", "Gym", "Library");
-    const sbRooms = ("SB70", "SB71", "SB72", "SB73");
+    const buildings = await Building.find();
     res.render("index", { buildings });
   } 
   

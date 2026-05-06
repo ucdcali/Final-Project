@@ -11,7 +11,10 @@ router.get("/", loadPage);
 router.get("/admin", adminLogin)
 
 //ADMIN DASHBOARD
-router.post("/admin/dashboard", adminDashboard)
+router.get("/admin/dashboard", adminDashboard)
+
+///EVENT FORM
+router.get("/index", eventForm)
 
 // CREATE MESSAGE
 router.post("/messages", createMessage);
