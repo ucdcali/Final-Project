@@ -42,6 +42,7 @@ const artists = [
     },
     {
         building: "SMUD",
+        rooms: ["SMUD"]
     },
     {
         building: "Gertrude Hall Building",
@@ -61,12 +62,15 @@ const artists = [
     },
     {
         building: "Parking Lot",
+        rooms: ["Parking Lot"]
     },
     {
         building: "Pitcairn",
+        rooms: ["Pitcairn"]
     },
     {
         building: "Ceramics Studio",
+        rooms: ["Ceramics Studio"]
     },
     {
         building: "Hoffman Gymnasium",
@@ -74,15 +78,19 @@ const artists = [
     },
     {
         building: "Field",
+        rooms: ["Field"]
     },
     {
         building: "Herrick Quad",
+        rooms: ["Herrick Quad"]
     },
     {
         building: "Madeline Court",
+        rooms: ["Madeline Court"]
     },
     {
         building: "Ayrshire Courtyard",
+        rooms: ["Ayrshire Courtyard"]
     },
     {
         building: "Dance Studio",
