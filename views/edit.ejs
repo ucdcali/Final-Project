@@ -20,6 +20,18 @@
     name="description"
     value="<%= event.description %>"
   >
+  <% buildings.forEach(b => { %>
+      <div class="formOption">
+          <h3><%= b.building %></h3>
+          <% b.rooms.forEach((r, i) => {%>
+            <li class="roomCheck">
+              <ul><input type="checkbox" name="room" value=<%=r%> id=<%=b.building+i%>>
+              <label for=<%=b.building+i%>><%=r%></label> </ul>
+              <ul><input name=<%=b.building+i%> placeholder="Description" style="display:block" id="i"></ul>
+            </li>
+          <% }) %>        
+      </div>
+    <% }) %>
 
   <button>Save Changes</button>
 
