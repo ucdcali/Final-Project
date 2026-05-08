@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Event</title>
+</head>
+<body>
+
+<h1>Edit Event</h1>
+
+<form action="/admin/edit/<%= event.id %>" method="POST">
+
+  <h3>Event Title</h3>
+  <input
+    name="event"
+    value="<%= event.event %>"
+  >
+
+  <h3>Description</h3>
+  <input
+    name="description"
+    value="<%= event.description %>"
+  >
+
+  <button>Save Changes</button>
+
+</form>
+
+</body>
+</html>

@@ -2,7 +2,7 @@ import express from 'express'
 export const router = express.Router()
 import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard} from '../controllers/adminController.js'
 import {createBuilding, deleteBuilding} from '../controllers/buildingController.js'
-import {eventForm} from '../controllers/eventController.js'
+import {eventForm, eventEdit, saveEventEdits} from '../controllers/eventController.js'
 
 // HOME PAGE
 router.get("/", loadPage);
@@ -11,10 +11,16 @@ router.get("/", loadPage);
 router.get("/admin", adminLogin)
 
 //ADMIN DASHBOARD
-router.get("/admin/dashboard", adminDashboard)
+router.post("/admin/dashboard", adminDashboard)
 
-///EVENT FORM
+//EVENT FORM
 router.get("/index", eventForm)
+
+//EDIT EVENT
+router.get("/edit", eventEdit)
+
+//SAVE EDITED EVENT
+router.post("/edit", eventEdit)
 
 // CREATE MESSAGE
 router.post("/messages", createMessage);

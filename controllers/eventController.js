@@ -12,3 +12,22 @@ export const eventForm = async (req, res) => {
     res.status(500).send("Error loading form");
   }
 };
+
+export const eventEdit = async (req, res) => {
+  const event = events.find(
+    e => e.id == req.params.id
+  );
+
+  res.render("edit", { event });
+};
+
+export const saveEventEdits = async (req, res) => {
+  const event = events.find(
+    e => e.id == req.params.id
+  );
+
+  event.event = req.body.event;
+  event.description = req.body.description;
+
+  res.redirect("/events");
+};
