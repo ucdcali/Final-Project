@@ -1,5 +1,5 @@
 body {
-  font-family:Arial, Helvetica, sans-serif;
+  font-family:sans-serif;
   padding: 20px;
 }
 
@@ -23,4 +23,109 @@ button {
   border-style: none;
   border-radius: 10%;
   padding:2%;
+}
+
+	.sidenav {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 20px;
+  transition: width 0.3s ease, padding 0.3s ease;
+}
+
+.sidenav.collapsed {
+  width: 0;
+  padding-top: 20px;
+}
+
+.sidenav.collapsed a {
+  opacity: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  transition: color 0.2s ease, opacity 0.3s ease;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.toggle-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background-color: #47763B;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 20px 20px 20px 190px;
+  transition: margin-left 0.3s ease, padding-left 0.3s ease;
+}
+
+.main.expanded {
+  margin-left: 0;
+  padding-left: 60px;
+}
+
+.map-wrapper,
+#mapContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#mapImage {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.map-marker {
+  position: absolute;
+  width: 80px;
+  height: auto;
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.map-marker.visible {
+  opacity: 1;
+}
+
+.main img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 16px;}
 }
