@@ -36,7 +36,13 @@ export const saveEventEdits = async (req, res) => {
 
 export const deleteEvent = async (req, res) => {
    try {
-    await Event.findByIdAndDelete(req.body.id);
+    console.log(req.body);
+    const deletedEvent = await Event.findByIdAndDelete(req.body.id);
+
+    if (!deletedEvent) {
+      return res.status(404).json({ message: "Event not found" });
+    }
+    else console.log('deleted');
 
     res.redirect("/admin/dashboard");
   } catch (err) {
