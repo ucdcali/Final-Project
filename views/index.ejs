@@ -7,9 +7,8 @@
 <body>
 
   <h1>Event</h1>
-  <form id="eventForm" class="form" action="/admin/dashboard" method="POST">
+  <form id="eventForm" class="form" action="/index/create" method="POST">
     
-    <button>Add</button>
      <label><h3>Event Title</h3></label>
     <input id="event" name="event" placeholder="Event title">
 
@@ -20,13 +19,14 @@
           <h3><%= b.building %></h3>
           <% b.rooms.forEach((r, i) => {%>
             <li class="roomCheck" >
-              <ul><input type="checkbox" name="room[Science]" value=<%=r%> id=<%=b.building+i%> class="room">
+              <ul><input type="checkbox" name="room" value=<%=r%> id=<%=b.building+i%> class="room">
               <label for=<%=b.building+i%>><%=r%></label> </ul>
               <ul><input placeholder="Description" style="display:block" ></ul>
             </li>
           <% }) %>        
       </div>
     <% }) %>
+    <button>Add</button>
   </form>
 
   

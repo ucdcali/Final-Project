@@ -28,9 +28,7 @@ export const adminLogin = async (req, res) => {
 //ADMIN DASHBOARD
 export const adminDashboard = async (req, res) => {
   try {
-	console.log(req.body.room)
 
-	const newEvent = await Event.create({event: req.body.event, description: req.body.description, buildings: [req.body.room]})
 	const events = await Event.find();
 	res.render("dashboard", {events})
   } 

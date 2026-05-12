@@ -13,7 +13,20 @@
             <li>
                 <h3><%= e.event %></h3>
                 <p><%= e.description%></p>
-                    
+                <form action="/deleteEvent" method="POST">
+
+            <input
+                type="hidden"
+                name="id"
+                value="<%= e.id %>"
+            >
+
+            <button type="submit">
+                Delete
+            </button>
+
+        </form>
+
                 </li>
             <% }) %>
         </ul>
