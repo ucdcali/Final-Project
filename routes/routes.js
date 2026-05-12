@@ -1,8 +1,8 @@
 import express from 'express'
 export const router = express.Router()
-import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard} from '../controllers/adminController.js'
+import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard, verifyPassword} from '../controllers/adminController.js'
 import {createBuilding, deleteBuilding} from '../controllers/buildingController.js'
-import {eventForm, eventEdit, saveEventEdits, deleteEvent, createEvent} from '../controllers/eventController.js'
+import {eventForm, eventEdit, saveEventEdits, createEvent, deleteEvent, eventLogin} from '../controllers/eventController.js'
 
 // HOME PAGE
 router.get("/", loadPage);
@@ -10,11 +10,17 @@ router.get("/", loadPage);
 //ADMIN PAGE
 router.get("/admin", adminLogin)
 
+//VERIFY PASSWORD
+router.post("/verify-password", verifyPassword)
+
 //ADMIN DASHBOARD
 router.get("/admin/dashboard", adminDashboard)
 
 //EVENT FORM
-router.get("/index", eventForm)
+router.post("/index", eventForm)
+
+//Password/Admin login
+router.get("/login", eventLogin)
 
 //CREATE EVENT
 router.post("/index/create", createEvent)
