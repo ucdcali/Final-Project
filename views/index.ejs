@@ -8,6 +8,8 @@
 
   <h1>Event</h1>
   <form id="eventForm" class="form" action="/admin/dashboard" method="POST">
+    
+    <button>Add</button>
      <label><h3>Event Title</h3></label>
     <input id="event" name="event" placeholder="Event title">
 
@@ -17,17 +19,23 @@
       <div class="formOption">
           <h3><%= b.building %></h3>
           <% b.rooms.forEach((r, i) => {%>
-            <li class="roomCheck">
-              <ul><input type="checkbox" name=<%=i%> id=<%=b.building+i%>>
+            <li class="roomCheck" >
+              <ul><input type="checkbox" name="room[Science]" value=<%=r%> id=<%=b.building+i%> class="room">
               <label for=<%=b.building+i%>><%=r%></label> </ul>
-              <ul><input name=<%=b.building+i%> placeholder="Description" style="display:block" id="i"></ul>
+              <ul><input placeholder="Description" style="display:block" ></ul>
             </li>
           <% }) %>        
       </div>
     <% }) %>
-    <button>Add</button>
   </form>
 
   
 </body>
 </html> 
+<!-- <script>function toggleVisibility(i) {
+    if(i.checked == true){
+      alert("hiii");
+      i.style = "display:block";}
+    else {i.style="display:none";}
+  } 
+</script> -->
