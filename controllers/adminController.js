@@ -1,6 +1,25 @@
-import Admin from '../models/Admin.js'
-import Building from '../models/Building.js'
-import Event from '../models/Event.js'
+//VERIFY PASSWORD
+export const verifyPassword = async (req, res) => {
+  try {
+    const password = req.body.password;
+    if (password === "tigersmap") {
+      // Password correct, redirect to index
+      const Building = (await import('../models/Building.js')).default;
+      const buildings = await Building.find();
+      res.render("index", { buildings });
+    } else {
+      // Password incorrect, send error message
+      res.send("Incorrect password. Please try again. <a href='/login'>Go back</a>");
+	  
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error verifying password");
+  }
+};
+
+
+
 // HOME PAGE
 export const loadPage = async (req, res) => {
   try {

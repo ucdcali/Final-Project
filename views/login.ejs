@@ -5,18 +5,12 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <h1>Edit Message</h1>
+  <h1>Enter Password</h1>
 
-  <form action="/messages/edit/<%= message._id %>" method="POST">
+  <form action="/verify-password" method="POST">
+    <input type="password" name="password" required>
+    <button type="submit">Submit Password</button>
     
-    <input name="user" value="<%= message.message %>">
-    <br>
-    <br>
-    <input name="password" value="<%= message.message %>">
-    <br>
-    <br>
-    <button type="submit">Login</button>
-    <a href="/">Cancel</a>
   </form>
 </body>
 </html>

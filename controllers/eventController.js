@@ -3,6 +3,11 @@ import Building from '../models/Building.js'
 import Event from '../models/Event.js'
 
 //EVENT FORM
+export const eventLogin = async (req, res) =>{
+  res.render("login")
+}
+
+
 export const eventForm = async (req, res) => {
   try {
     const buildings = await Building.find();
