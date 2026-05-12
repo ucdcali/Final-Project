@@ -16,7 +16,7 @@
     <a href="#" class="location-link" data-location="upperenglish">English Building (EB)</a>
     <a href="#" class="location-link" data-location="smud">SMUD</a>
     <a href="#" class="location-link" data-location="middlehumanities">Gertrude Hall Building</a>
-    <a href="#" class="location-link" data-location="middlescience">Brain Science Building</a>
+    <a href="#" class="location-link" data-location="middlescience">Braun Science Building</a>
     <a href="#" class="location-link" data-location="braun">Braun Music Center (next to SWAN)</a>
     <a href="#" class="location-link" data-location="ranney">Ranney House</a>
     <a href="#" class="location-link" data-location="parkinglot">Parking Lot</a>
@@ -24,10 +24,10 @@
     <a href="#" class="location-link" data-location="ceramics">Ceramics Studio</a>
     <a href="#" class="location-link" data-location="gym">Hoffman Gymnasium</a>
     <a href="#" class="location-link" data-location="field">Field</a>
-    <a href="#" class="location-link" data-location="quad">Science Building (SB)</a>
-    <a href="#" class="location-link" data-location="madelinecourt">Main Building (MB)</a>
-    <a href="#" class="location-link" data-location="ayshirecourtyard">Art Studio</a>
-    <a href="#" class="location-link" data-location="dancestudio">Rothenberg Building (RB)</a>
+    <a href="#" class="location-link" data-location="quad">Herrick Quad</a>
+    <a href="#" class="location-link" data-location="madelinecourt">Madeline Court</a>
+    <a href="#" class="location-link" data-location="ayshirecourtyard">Ayshire Courtyard</a>
+    <a href="#" class="location-link" data-location="dancestudio">Dance Studio</a>
     <a href="#" class="location-link" data-location="mudd">MUDD</a>
   </div>
 
@@ -44,7 +44,7 @@
     const mainContent = document.getElementById('mainContent');
     const locationLinks = document.querySelectorAll('.location-link');
     const mapMarker = document.getElementById('mapMarker');
-
+    //Matching up the images with the seeded data
     const locations = {
       sb: { src: '/sb.png', alt: 'Science Building', top: '12%', left: '15%' },
       mainbuilding: { src: '/mainbuilding.png', alt: 'Main Building', top: '62%', left: '27%' },
@@ -53,20 +53,29 @@
       pac: { src: '/pac.png', alt: 'Performing Arts Center', top: '31%', left: '43%' },
       upperenglish: { src: '/upperenglish.png', alt: 'English Building', top: '30%', left: '28.5%' },
       smud: { src: '/smud.png', alt: 'SMUD', top: '53%', left: '20%' },
+  
       middlehumanities: { src: '/middlehumanities.png', alt: 'Gertrude Hall Building', top: '60%', left: '20%' },
-      middlescience: { src: '/middlescience.png', alt: 'Brain Science Building', top: '38%', left: '30%' },
-      braun: { src: '/braun.png', alt: 'Braun Music Center', top: '20%', left: '15%' },
-      ranney: { src: '/ranney.png', alt: 'Ranney House', top: '62%', left: '24%' },
-      parkinglot: { src: '/parkinglot.png', alt: 'Parking Lot', top: '56%', left: '70%' },
-      pitcairn: { src: '/pitcairn.png', alt: 'Pitcairn', top: '68%', left: '58%' },
-      ceramics: { src: '/ceramics.png', alt: 'Ceramics Studio', top: '66%', left: '48%' },
-      gym: { src: '/gym.png', alt: 'Hoffman Gymnasium', top: '58%', left: '80%' },
-      field: { src: '/field.png', alt: 'Field', top: '78%', left: '85%' },
-      quad: { src: '/quad.png', alt: 'Quad', top: '42%', left: '50%' },
-      madelinecourt: { src: '/madelinecourt.png', alt: 'Madeline Court', top: '48%', left: '55%' },
-      ayshirecourtyard: { src: '/ayshirecourtyard.png', alt: 'Ayrshire Courtyard', top: '50%', left: '45%' },
-      dancestudio: { src: '/dancestudio.png', alt: 'Dance Studio', top: '22%', left: '62%' },
-      mudd: { src: '/mudd.png', alt: 'MUDD', top: '52%', left: '33%' }
+      middlescience: { src: '/middlescience.png', alt: 'Braun Science Building', top: '78%', left: '10%' },
+
+
+      braun: { src: '/braun.png', alt: 'Braun Music Center', top: '57%', left: '40%' },
+      ranney: { src: '/ranney.png', alt: 'Ranney House', top: '75%', left: '20%' },
+      parkinglot: { src: '/parkinglot.png', alt: 'Parking Lot', top: '85%', left: '20%' },
+
+     
+      pitcairn: { src: '/pitcairn.png', alt: 'Pitcairn', top: '88%', left: '48%' },
+
+
+      ceramics: { src: '/ceramics.png', alt: 'Ceramics Studio', top: '85%', left: '40%' },
+      gym: { src: '/gym.png', alt: 'Hoffman Gymnasium', top: '68%', left: '50%' },
+      field: { src: '/field.png', alt: 'Field', top: '58%', left: '65%' },
+
+ 
+      quad: { src: '/quad.png', alt: 'Quad', top: '70%', left: '40%' },
+      madelinecourt: { src: '/madelinecourt.png', alt: 'Madeline Court', top: '40%', left: '37%' },
+      ayshirecourtyard: { src: '/ayshirecourtyard.png', alt: 'Ayrshire Courtyard', top: '23%', left: '33%' },
+      dancestudio: { src: '/dancestudio.png', alt: 'Dance Studio', top: '52%', left: '50%' },
+      mudd: { src: '/mudd.png', alt: 'MUDD', top: '88%', left: '33%' }
     };
 
     function showLocation(locationKey) {
@@ -79,7 +88,7 @@
       mapMarker.hidden = false;
       mapMarker.classList.add('visible');
     }
-
+    //Displays the highlighted image on click
     locationLinks.forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
