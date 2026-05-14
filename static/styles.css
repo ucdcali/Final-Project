@@ -33,11 +33,13 @@ button {
   overflow-x: hidden;
   padding-top: 20px;
   transition: width 0.3s ease, padding 0.3s ease;
+  color: white
 }
 
 .sidenav.collapsed {
   width: 0;
   padding-top: 20px;
+  color: white
 }
 
 .sidenav.collapsed a {
@@ -46,6 +48,7 @@ button {
   padding: 0;
   margin: 0;
   pointer-events: none;
+  color: white
 }
 
 .sidenav a {
