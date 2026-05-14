@@ -17,7 +17,6 @@ const eventSchema = new mongoose.Schema({
     description: String,
     id: String,
     creator: String,
-    link: String,
 });
 
 export default mongoose.model("Event", eventSchema);

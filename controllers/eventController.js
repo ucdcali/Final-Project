@@ -34,23 +34,6 @@ export const saveEventEdits = async (req, res) => {
   }
 };
 
-/*export const deleteEvent = async (req, res) => {
-  try {
-    console.log(req.body);
-  const event = events.find(
-    e => e.id == req.params.id
-  );
-
-  event.event = req.body.event;
-  event.description = req.body.description;
-  event.link = "/" + req.body.event;
-
-  res.redirect("/events");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error deleting event");
-  }
-};*/
 
 export const deleteEvent = async (req, res) => {
    try {
@@ -79,7 +62,6 @@ export const createEvent = async (req, res) => {
       event: req.body.event,
       description: req.body.description,
       buildings: [rooms],
-      link: "/" + req.body.event,
     });
 
     res.redirect("/admin/dashboard");
