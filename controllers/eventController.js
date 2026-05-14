@@ -61,6 +61,7 @@ export const createEvent = async (req, res) => {
     const rooms = Array.isArray(req.body.room)
       ? req.body.room
       : [req.body.room];
+      console.log(req.body.room)
     await Event.create({
       event: req.body.event,
       description: req.body.description,
