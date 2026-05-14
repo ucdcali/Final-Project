@@ -2,18 +2,20 @@
 <html>
 <head>
   <title>Refactor App</title>
-  <link rel="stylesheet" href="../static/adminStyles.css">
+  <link rel="stylesheet" href="/adminStyles.css">
 </head>
 <body>
 
   <h1>Event</h1>
   <form id="eventForm" class="form" action="/index/create" method="POST">
-    
+    <div id="textInput">
      <label><h3>Event Title</h3></label>
     <input id="event" name="event" placeholder="Event title">
 
     <h3>Event Description</h3>
     <input id="description" name="description" placeholder="Brief overview of event">
+    </div>
+    <div id="buildingCheck">
     <% buildings.forEach(b => { %>
       <div class="formOption">
           <h3><%= b.building %></h3>
@@ -26,6 +28,7 @@
           <% }) %>        
       </div>
     <% }) %>
+    </div>
     <button>Add</button>
   </form>
 
