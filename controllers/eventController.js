@@ -126,12 +126,15 @@ export const viewEventMap = async (req, res) => {
       "MUDD": "mudd",
     };
 
-    const selectedLocations = buildings
-      .map((building) => ({
-        name: building.building,
-        locationKey: locationKeys[building.building],
-      }))
-      .filter((loc) => loc.locationKey);
+    const selectedLocations = [...new Map(
+      buildings
+        .map((building) => ({
+          name: building.building,
+          locationKey: locationKeys[building.building],
+        }))
+        .filter((loc) => loc.locationKey)
+        .map((loc) => [loc.locationKey, loc])
+    )].map(([_, loc]) => loc);
 
     res.render("addMap", { event, selectedLocations });
   } catch (err) {

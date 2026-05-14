@@ -1,27 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= event.event %> Map</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-	<button class="toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+  <button class="toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
 
+  <div class="sidenav" id="sidebar">
+    <h2><%= event.event %></h2>
+    <p><%= event.description %></p>
+    <p><strong>Selected buildings:</strong></p>
+    <% if (!selectedLocations || selectedLocations.length === 0) { %>
+      <p>No selected buildings available for this event.</p>
+    <% } else { %>
+      <ul>
+        <% selectedLocations.forEach(loc => { %>
+          <li>
+            <a href="#" class="location-link" data-location="<%= loc.locationKey %>"><%= loc.name %></a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+    <a href="/admin/dashboard" class="admin-login">Back to Dashboard</a>
+  </div>
 
-
-	
-	
-	<div class="main" id="mainContent">
+  <div class="main" id="mainContent">
     <div id="mapContainer">
       <img id="mapImage" src="/Campus Map.jpg" alt="Westridge Map">
       <img id="mapMarker" class="map-marker" src="" alt="" hidden>
     </div>
   </div>
 
+  <script>
+    const toggleButton = document.getElementById('sidebarToggle');
+    const sidebar = document.getElementById('sidebar');
+    const mainContent = document.getElementById('mainContent');
+    const locationLinks = document.querySelectorAll('.location-link');
+    const mapMarker = document.getElementById('mapMarker');
 
+    const locations = {
+      sb: { src: '/sb.png', alt: 'Science Building', top: '12%', left: '15%' },
+      mainbuilding: { src: '/mainbuilding.png', alt: 'Main Building', top: '62%', left: '27%' },
+      upperart: { src: '/upperart.png', alt: 'Art Studio', top: '25%', left: '25%' },
+      rb: { src: '/rb.png', alt: 'Rothenberg Building', top: '18%', left: '33%' },
+      pac: { src: '/pac.png', alt: 'Performing Arts Center', top: '31%', left: '43%' },
+      upperenglish: { src: '/upperenglish.png', alt: 'English Building', top: '30%', left: '28.5%' },
+      smud: { src: '/smud.png', alt: 'SMUD', top: '53%', left: '20%' },
+      middlehumanities: { src: '/middlehumanities.png', alt: 'Gertrude Hall Building', top: '60%', left: '20%' },
+      middlescience: { src: '/middlescience.png', alt: 'Braun Science Building', top: '78%', left: '10%' },
+      braun: { src: '/braun.png', alt: 'Braun Music Center', top: '57%', left: '40%' },
+      ranney: { src: '/ranney.png', alt: 'Ranney House', top: '75%', left: '20%' },
+      parkinglot: { src: '/parkinglot.png', alt: 'Parking Lot', top: '85%', left: '20%' },
+      pitcairn: { src: '/pitcairn.png', alt: 'Pitcairn', top: '88%', left: '48%' },
+      ceramics: { src: '/ceramics.png', alt: 'Ceramics Studio', top: '85%', left: '40%' },
+      gym: { src: '/gym.png', alt: 'Hoffman Gymnasium', top: '68%', left: '50%' },
+      field: { src: '/field.png', alt: 'Field', top: '58%', left: '65%' },
+      quad: { src: '/quad.png', alt: 'Quad', top: '70%', left: '40%' },
+      madelinecourt: { src: '/madelinecourt.png', alt: 'Madeline Court', top: '40%', left: '37%' },
+      ayshirecourtyard: { src: '/ayshirecourtyard.png', alt: 'Ayrshire Courtyard', top: '23%', left: '33%' },
+      dancestudio: { src: '/dancestudio.png', alt: 'Dance Studio', top: '52%', left: '50%' },
+      mudd: { src: '/mudd.png', alt: 'MUDD', top: '88%', left: '33%' }
+    };
 
+    function showLocation(locationKey) {
+      const location = locations[locationKey];
+      if (!location) return;
+      mapMarker.src = location.src;
+      mapMarker.alt = location.alt;
+      mapMarker.style.top = location.top;
+      mapMarker.style.left = location.left;
+      mapMarker.hidden = false;
+      mapMarker.classList.add('visible');
+    }
 
+    locationLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const location = link.dataset.location;
+        showLocation(location);
+      });
+    });
 
+    toggleButton.addEventListener('click', () => {
+      sidebar.classList.toggle('collapsed');
+      mainContent.classList.toggle('expanded');
+      toggleButton.textContent = sidebar.classList.contains('collapsed') ? '☰' : '×';
+    });
+  </script>
 </body>
 </html>
