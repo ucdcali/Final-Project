@@ -1,3 +1,5 @@
+import Event from '../models/Event.js'
+
 //VERIFY PASSWORD
 export const verifyPassword = async (req, res) => {
   try {
