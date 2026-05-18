@@ -38,10 +38,13 @@
     </div>
   </div>
 
+  <a class="adminLogin" id="adminLogin" href="/login">Create a new map</a>
+
   <script>
     const toggleButton = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
+    const adminLogin = document.getElementById('adminLogin');
     const locationLinks = document.querySelectorAll('.location-link');
     const mapMarker = document.getElementById('mapMarker');
 
@@ -101,11 +104,10 @@
     toggleButton.addEventListener('click', () => {
       sidebar.classList.toggle('collapsed');
       mainContent.classList.toggle('expanded');
+      adminLogin.classList.toggle('expanded');
       toggleButton.textContent = sidebar.classList.contains('collapsed') ? '☰' : '×';
     });
   </script>
-
-  <a class="admin-login" id="admin-login" href="/login">Create a new map</a>
 
 
 

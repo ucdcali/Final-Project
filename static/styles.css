@@ -128,4 +128,31 @@ button {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 16px;}
+  .main {
+  margin-left: 30px; 
+  font-size: 16px;
+  padding: 10px 0px 10px 60px;
+}
+.main.expanded {
+  margin-left: 0;
+  padding-left: 50px;
+}
+.adminLogin.expanded {
+  margin-left: 25px;
+  padding-left: 20px;
+}
+.adminLogin {
+  margin-left: 30px;
+  padding: 10px 0px 10px 60px;
+}
+
+.sidenav a {
+  padding: 3px 4px 3px 8px;
+  font-size: 14px;
+}
+.sidenav {
+  height: 100%;
+  width: 100px;
+  padding-top: 20px;
+}
 }
