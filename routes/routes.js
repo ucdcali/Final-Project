@@ -2,7 +2,7 @@ import express from 'express'
 export const router = express.Router()
 import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard, verifyPassword} from '../controllers/adminController.js'
 import {createBuilding, deleteBuilding} from '../controllers/buildingController.js'
-import {eventForm, eventEdit, saveEventEdits, createEvent, deleteEvent, eventLogin, viewEventMap} from '../controllers/eventController.js'
+import {eventForm, eventEdit, saveEventEdits, createEvent, deleteEvent, editEvent, eventLogin, viewEventMap} from '../controllers/eventController.js'
 
 // HOME PAGE
 router.get("/", loadPage);
@@ -33,6 +33,9 @@ router.post("/edit", saveEventEdits)
 
 //DELETE EVENT
 router.post("/deleteEvent", deleteEvent)
+
+//EDIT EVENT
+router.post("/editEvent/:id", editEvent)
 
 // VIEW EVENT MAP
 router.get("/events/:id/map", viewEventMap)

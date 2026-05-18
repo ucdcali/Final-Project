@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Edit Event</title>
+  <title>Refactor App</title>
+  <link rel="stylesheet" href="/adminStyles.css">
 </head>
 <body>
 
-<h1>Edit Event</h1>
+  <h1>Event</h1>
+  <form id="eventForm" class="form" action="/index/create" method="POST">
+    <div id="textInput">
+     <label><h3>Event Title</h3></label>
+    <input id="event" name="event" placeholder="Event title" required>
 
-<form action="/admin/edit/<%= event.id %>" method="POST">
-
-  <h3>Event Title</h3>
-  <input
-    name="event"
-    value="<%= event.event %>"
-  >
-
-  <h3>Description</h3>
-  <input
-    name="description"
-    value="<%= event.description %>"
-  >
-  <% buildings.forEach(b => { %>
+    <h3>Event Description</h3>
+    <input id="description" name="description" placeholder="Brief overview of event" required>
+    </div>
+    <div id="buildingCheck">
+    <% buildings.forEach(b => { %>
       <div class="formOption">
           <h3><%= b.building %></h3>
           <% b.rooms.forEach((r, i) => {%>
             <li class="roomCheck">
               <ul><input type="checkbox" name="room" value=<%=r%> id=<%=b.building+i%>>
               <label for=<%=b.building+i%>><%=r%></label> </ul>
-              <ul><input name=<%=b.building+i%> placeholder="Description" style="display:block" id="i" value='<%= b.description'></ul>
+              <ul><input name=<%=b.building+i%> placeholder="Description" style="display:block" id="i"></ul>
             </li>
           <% }) %>        
       </div>
     <% }) %>
+    </div>
+    <button>Add</button>
+  </form>
 
-  <button>Save Changes</button>
-
-</form>
-
+  
 </body>
-</html>
+</html> 

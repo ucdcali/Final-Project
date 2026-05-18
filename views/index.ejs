@@ -10,10 +10,10 @@
   <form id="eventForm" class="form" action="/index/create" method="POST">
     <div id="textInput">
      <label><h3>Event Title</h3></label>
-    <input id="event" name="event" placeholder="Event title">
+    <input id="event" name="event" placeholder="Event title" required>
 
     <h3>Event Description</h3>
-    <input id="description" name="description" placeholder="Brief overview of event">
+    <input id="description" name="description" placeholder="Brief overview of event" required>
     </div>
     <div id="buildingCheck">
     <% buildings.forEach(b => { %>

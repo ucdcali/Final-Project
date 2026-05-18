@@ -50,8 +50,25 @@ export const deleteEvent = async (req, res) => {
   }
 };
 
+export const editEvent = async (req, res) => {
+  try {
+    console.log (req.params);
+    const event = await Event.findById(req.params.id);
+    if (!event) {
+      return res.status(404).send("Event not found");
+    }
+    res.render('edit', { event });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error loading event for edit");
+  }
+};
+
 export const createEvent = async (req, res) => {
   try {
+    if (req.body.event == "" || req.body.description == ""){
+      return res.redirect ("/");
+    }
     const rooms = req.body.room
       ? Array.isArray(req.body.room)
         ? req.body.room
