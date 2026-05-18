@@ -58,11 +58,21 @@ export const createEvent = async (req, res) => {
         : [req.body.room]
       : [];
 
-    await Event.create({
+    const normalizedRooms = Array.from(
+      new Set(rooms.map((value) => String(value).trim()).filter(Boolean))
+    );
+
+    const eventData = {
       event: req.body.event,
       description: req.body.description,
-      buildings: [rooms],
-    });
+      buildings: [],
+    };
+
+    if (normalizedRooms.length > 0) {
+      eventData.buildings = [{ rooms: normalizedRooms }];
+    }
+
+    await Event.create(eventData);
 
     res.redirect("/admin/dashboard");
   } catch (err) {
@@ -79,10 +89,62 @@ export const viewEventMap = async (req, res) => {
     }
 
     const selectedRooms = Array.isArray(event.buildings)
-      ? event.buildings.flat()
+      ? event.buildings.flatMap((entry) =>
+          Array.isArray(entry.rooms)
+            ? entry.rooms.map((value) => String(value).trim()).filter(Boolean)
+            : []
+        )
       : [];
 
-    const buildings = await Building.find({ rooms: { $in: selectedRooms } });
+    const allBuildings = await Building.find();
+    const buildings = allBuildings.filter((building) => {
+      const buildingName = String(building.building).toLowerCase();
+      const buildingWords = buildingName.split(/\s+/).filter(Boolean);
+      const roomNames = building.rooms.map((room) => String(room).toLowerCase());
+
+      return selectedRooms.some((selected) => {
+        const normalized = String(selected).toLowerCase();
+        const selectedWords = normalized.split(/\s+/).filter(Boolean);
+
+        if (buildingName === normalized) {
+          return true;
+        }
+
+        if (roomNames.includes(normalized)) {
+          return true;
+        }
+
+        const isFullBuildingMatch =
+          selectedWords.length > 1 &&
+          buildingWords.every((word) => selectedWords.includes(word));
+
+        if (isFullBuildingMatch) {
+          return true;
+        }
+
+        const isFullBuildingNameIncluded =
+          buildingWords.length > 1 &&
+          buildingWords.every((word) => selectedWords.includes(word));
+
+        if (isFullBuildingNameIncluded) {
+          return true;
+        }
+
+        return roomNames.some((roomName) => {
+          const roomWords = roomName.split(/\s+/).filter(Boolean);
+          if (roomName === normalized) {
+            return true;
+          }
+          if (roomWords.length > 1 && roomWords.every((word) => selectedWords.includes(word))) {
+            return true;
+          }
+          if (selectedWords.length > 1 && selectedWords.every((word) => roomWords.includes(word))) {
+            return true;
+          }
+          return false;
+        });
+      });
+    });
 
     const locationKeys = {
       "Science Building": "sb",
