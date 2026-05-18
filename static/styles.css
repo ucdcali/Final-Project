@@ -80,9 +80,9 @@ button {
 }
 
 .main {
-  margin-left: 160px; /* Same as the width of the sidenav */
+  margin-left: 80px; /* Same as the width of the sidenav */
   font-size: 28px; /* Increased text to enable scrolling */
-  padding: 20px 20px 20px 190px;
+  padding: 20px 20px 20px 150px;
   transition: margin-left 0.3s ease, padding-left 0.3s ease;
 }
 
@@ -123,6 +123,16 @@ button {
   height: auto;
   display: block;
   margin: 0 auto;
+}
+
+.adminLogin.expanded {
+  margin-left: 0px;
+  padding-left: 60px;
+}
+.adminLogin {
+  margin-left: 80px;
+  padding: 10px 0px 10px 150px;
+  transition: margin-left 0.3s ease, padding-left 0.3s ease;
 }
 
 @media screen and (max-height: 450px) {
