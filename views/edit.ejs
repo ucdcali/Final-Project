@@ -27,7 +27,7 @@
             <li class="roomCheck">
               <ul><input type="checkbox" name="room" value=<%=r%> id=<%=b.building+i%>>
               <label for=<%=b.building+i%>><%=r%></label> </ul>
-              <ul><input name=<%=b.building+i%> placeholder="Description" style="display:block" id="i"></ul>
+              <ul><input name=<%=b.building+i%> placeholder="Description" style="display:block" id="i" value='<%= b.description'></ul>
             </li>
           <% }) %>        
       </div>
