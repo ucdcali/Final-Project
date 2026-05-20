@@ -21,9 +21,15 @@
           <h3><%= b.building %></h3>
           <% b.rooms.forEach((r, i) => {%>
             <li class="roomCheck" >
-              <ul><input type="checkbox" name="room" value=<%=r%> id=<%=b.building+i%> class="room">
-              <label for=<%=b.building+i%>><%=r%></label> </ul>
-              <ul><input placeholder="Description" style="display:block" ></ul>
+              <% const safeId = `b_${b._id}_${i}` %>
+              <ul>
+                <input type="checkbox" name="room" value="<%= safeId %>" id="<%= safeId %>" class="room">
+                <label for="<%= safeId %>"><%= r %></label>
+                <input type="hidden" name="roomName_<%= safeId %>" value="<%= r %>">
+              </ul>
+              <ul>
+                <input name="roomDesc_<%= safeId %>" placeholder="Description" style="display:block">
+              </ul>
             </li>
           <% }) %>        
       </div>

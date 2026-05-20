@@ -23,10 +23,34 @@ export const eventEdit = async (req, res) => {
 
 export const saveEventEdits = async (req, res) => {
   try {
-    await Event.findByIdAndUpdate(req.params.id, {
+    const selected = req.body.room
+      ? Array.isArray(req.body.room)
+        ? req.body.room
+        : [req.body.room]
+      : [];
+
+    const buildingMap = {};
+    for (const safeIdRaw of selected) {
+      const safeId = String(safeIdRaw).trim();
+      if (!safeId) continue;
+      // safeId format: b_<buildingId>_<index>
+      const parts = safeId.split('_');
+      if (parts.length < 3) continue;
+      const buildingId = parts[1];
+      const roomName = req.body[`roomName_${safeId}`] || '';
+      const roomDesc = req.body[`roomDesc_${safeId}`] || '';
+      if (!buildingMap[buildingId]) buildingMap[buildingId] = { rooms: [], roomDescriptions: [], buildings: buildingId };
+      buildingMap[buildingId].rooms.push(String(roomName).trim());
+      buildingMap[buildingId].roomDescriptions.push(String(roomDesc).trim());
+    }
+
+    const update = {
       event: req.body.event,
       description: req.body.description,
-    });
+      buildings: Object.values(buildingMap),
+    };
+
+    await Event.findByIdAndUpdate(req.params.id, update);
     res.redirect("/admin/dashboard");
   } catch (err) {
     console.error(err);
@@ -57,7 +81,8 @@ export const editEvent = async (req, res) => {
     if (!event) {
       return res.status(404).send("Event not found");
     }
-    res.render('edit', { event });
+    const buildings = await Building.find();
+    res.render('edit', { event, buildings });
   } catch (err) {
     console.error(err);
     res.status(500).send("Error loading event for edit");
@@ -69,25 +94,31 @@ export const createEvent = async (req, res) => {
     if (req.body.event == "" || req.body.description == ""){
       return res.redirect ("/");
     }
-    const rooms = req.body.room
+    const selected = req.body.room
       ? Array.isArray(req.body.room)
         ? req.body.room
         : [req.body.room]
       : [];
 
-    const normalizedRooms = Array.from(
-      new Set(rooms.map((value) => String(value).trim()).filter(Boolean))
-    );
+    const buildingMap = {};
+    for (const safeIdRaw of selected) {
+      const safeId = String(safeIdRaw).trim();
+      if (!safeId) continue;
+      const parts = safeId.split('_');
+      if (parts.length < 3) continue;
+      const buildingId = parts[1];
+      const roomName = req.body[`roomName_${safeId}`] || '';
+      const roomDesc = req.body[`roomDesc_${safeId}`] || '';
+      if (!buildingMap[buildingId]) buildingMap[buildingId] = { rooms: [], roomDescriptions: [], buildings: buildingId };
+      buildingMap[buildingId].rooms.push(String(roomName).trim());
+      buildingMap[buildingId].roomDescriptions.push(String(roomDesc).trim());
+    }
 
     const eventData = {
       event: req.body.event,
       description: req.body.description,
-      buildings: [],
+      buildings: Object.values(buildingMap),
     };
-
-    if (normalizedRooms.length > 0) {
-      eventData.buildings = [{ rooms: normalizedRooms }];
-    }
 
     await Event.create(eventData);
 

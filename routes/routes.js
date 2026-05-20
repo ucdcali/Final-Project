@@ -29,7 +29,7 @@ router.post("/index/create", createEvent)
 router.get("/edit", eventEdit)
 
 //SAVE EDITED EVENT
-router.post("/edit", saveEventEdits)
+router.post("/edit/:id", saveEventEdits)
 
 //DELETE EVENT
 router.post("/deleteEvent", deleteEvent)

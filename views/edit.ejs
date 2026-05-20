@@ -7,23 +7,54 @@
 <body>
 
   <h1>Event</h1>
-  <form id="eventForm" class="form" action="/index/create" method="POST">
+  <form id="eventForm" class="form" action="/edit/<%= event._id %>" method="POST">
     <div id="textInput">
      <label><h3>Event Title</h3></label>
-    <input id="event" name="event" placeholder="Event title" required>
+    <input id="event" name="event" placeholder="Event title" required value="<%= event.event %>">
 
     <h3>Event Description</h3>
-    <input id="description" name="description" placeholder="Brief overview of event" required>
+    <input id="description" name="description" placeholder="Brief overview of event" required value="<%= event.description %>">
     </div>
     <div id="buildingCheck">
+    <% 
+      const selectedRooms = [];
+      if (event.buildings && event.buildings.length) {
+        event.buildings.forEach(be => {
+          if (Array.isArray(be.rooms)) be.rooms.forEach(rr => selectedRooms.push(String(rr)));
+        });
+      }
+      // normalized set for robust comparisons
+      const selectedNorm = new Set(selectedRooms.map(s => String(s).trim().toLowerCase()));
+    %>
     <% buildings.forEach(b => { %>
       <div class="formOption">
           <h3><%= b.building %></h3>
           <% b.rooms.forEach((r, i) => {%>
             <li class="roomCheck">
-              <ul><input type="checkbox" name="room" value=<%=r%> id=<%=b.building+i%>>
-              <label for=<%=b.building+i%>><%=r%></label> </ul>
-              <ul><input name=<%=b.building+i%> placeholder="Description" style="display:block" id="i"></ul>
+              <% const safeId = `b_${b._id}_${i}` %>
+              <% const isChecked = selectedNorm.has(String(r).trim().toLowerCase()) %>
+              <ul>
+                <input type="checkbox" name="room" value="<%= safeId %>" id="<%= safeId %>" <%= isChecked ? 'checked' : '' %> >
+                <label for="<%= safeId %>"><%= r %></label>
+                <input type="hidden" name="roomName_<%= safeId %>" value="<%= r %>">
+              </ul>
+              <ul>
+                <% 
+                  let existingDesc = '';
+                  if (event.buildings && event.buildings.length) {
+                    for (const be of event.buildings) {
+                      if (Array.isArray(be.rooms)) {
+                        for (let idx = 0; idx < be.rooms.length; idx++) {
+                          if (String(be.rooms[idx]).trim().toLowerCase() === String(r).trim().toLowerCase()) {
+                            if (be.roomDescriptions && be.roomDescriptions[idx]) existingDesc = be.roomDescriptions[idx];
+                          }
+                        }
+                      }
+                    }
+                  }
+                %>
+                <input name="roomDesc_<%= safeId %>" placeholder="Description" style="display:block" value="<%= existingDesc %>">
+              </ul>
             </li>
           <% }) %>        
       </div>
