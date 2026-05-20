@@ -101,6 +101,7 @@ button {
 
 #mapImage {
   width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
 }
@@ -108,6 +109,8 @@ button {
 .map-marker {
   position: absolute;
   width: 80px;
+  max-width: 18vw;
+  min-width: 40px;
   height: auto;
   transform: translate(-50%, -100%);
   pointer-events: none;
@@ -138,31 +141,51 @@ button {
 @media screen and (max-width: 480px) {
   .sidenav {padding-top: 15px;}
   .main {
-  margin-left: 30px; 
-  font-size: 16px;
-  padding: 10px 0px 10px 60px;
-}
-.main.expanded {
-  margin-left: 0;
-  padding-left: 50px;
-}
-.adminLogin.expanded {
-  margin-left: 25px;
-  padding-left: 20px;
-}
-.adminLogin {
-  margin-left: 30px;
-  padding: 10px 0px 10px 60px;
-  font-size: 12px;
+    margin-left: 30px;
+    font-size: 16px;
+    padding: 10px 0px 10px 60px;
+  }
+  .main.expanded {
+    margin-left: 0;
+    padding-left: 50px;
+  }
+  .adminLogin.expanded {
+    margin-left: 25px;
+    padding-left: 20px;
+  }
+  .adminLogin {
+    margin-left: 30px;
+    padding: 10px 0px 10px 60px;
+    font-size: 12px;
+  }
+
+  .sidenav a {
+    padding: 3px 4px 3px 8px;
+    font-size: 14px;
+  }
+  .sidenav {
+    height: 100%;
+    width: 100px;
+    padding-top: 60px;
+  }
+
+  #mapContainer,
+  .map-wrapper {
+    max-width: 100%;
+  }
+
+  #mapImage {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .map-marker {
+    width: 10px;
+    max-width: 2vw;
+    height: 10px;
+    max-height: 2vh
+  }
 }
 
-.sidenav a {
-  padding: 3px 4px 3px 8px;
-  font-size: 14px;
-}
-.sidenav {
-  height: 100%;
-  width: 100px;
-  padding-top: 60px;
-}
-}
+
