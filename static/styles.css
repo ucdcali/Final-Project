@@ -80,7 +80,7 @@ button {
 }
 
 .main {
-  margin-left: 80px; /* Same as the width of the sidenav */
+  margin-left: 80px;
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 20px 20px 20px 150px;
   transition: margin-left 0.3s ease, padding-left 0.3s ease;
@@ -135,9 +135,8 @@ button {
   transition: margin-left 0.3s ease, padding-left 0.3s ease;
 }
 
-@media screen and (max-height: 450px) {
+@media screen and (max-width: 480px) {
   .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 16px;}
   .main {
   margin-left: 30px; 
   font-size: 16px;
@@ -154,6 +153,7 @@ button {
 .adminLogin {
   margin-left: 30px;
   padding: 10px 0px 10px 60px;
+  font-size: 12px;
 }
 
 .sidenav a {
@@ -163,6 +163,6 @@ button {
 .sidenav {
   height: 100%;
   width: 100px;
-  padding-top: 20px;
+  padding-top: 60px;
 }
 }
