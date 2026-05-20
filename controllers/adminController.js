@@ -20,6 +20,26 @@ export const verifyPassword = async (req, res) => {
   }
 };
 
+export const directDashboard = async (req, res) => {
+	try {
+		// If GET request, render the password entry page
+		if (req.method === 'GET') {
+			return res.render('direct');
+		}
+
+		// For POST, verify password and render dashboard
+		const password = req.body.password;
+		if (password === 'tigersmap') {
+			const events = await Event.find();
+			return res.render('dashboard', { events });
+		}
+		return res.send("Incorrect password. Please try again. <a href='/login'>Go back</a>");
+	} catch (err) {
+		console.error(err);
+		res.status(500).send('Error verifying password');
+	}
+
+}
 
 
 // HOME PAGE
