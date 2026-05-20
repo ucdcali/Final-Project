@@ -2,10 +2,11 @@ import mongoose from "mongoose";
 
 const roomSchema = new mongoose.Schema({
     rooms: [String],
-    buildings: {
+  buildings: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Building"
     },
+  roomDescriptions: [String],
 });
 
 const eventSchema = new mongoose.Schema({
