@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+
   <button class="toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
 
   <div class="sidenav" id="sidebar">
@@ -26,7 +27,17 @@
     <% } %>
     <a href="/admin/dashboard" class="admin-login">Back to Dashboard</a>
   </div>
-
+  <div>
+    <h1><%=selectedLocations.buildings%></selectedLocations></h1>
+  </div>
+  <!-- <div>
+    <h2><%=//event.building%></h2>
+    <%//rooms.forEach(=>{ %>
+      <h3><%=//event.room[r]%></h3>
+      <h3><</h3>
+    <%//})%>
+    
+  </div> -->
 <!--Loading up the campus map-->
   <div class="main" id="mainContent">
     <div id="mapContainer">
@@ -34,13 +45,14 @@
       <img id="mapMarker" class="map-marker" src="" alt="" hidden>
     </div>
   </div>
-
+  
   <script>
     const toggleButton = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
     const locationLinks = document.querySelectorAll('.location-link');
     const mapMarker = document.getElementById('mapMarker');
+    const info = document.getElementById()
 
     const locations = {
       sb: { src: '/sb.png', alt: 'Science Building', top: '12%', left: '15%' },
@@ -65,7 +77,9 @@
       dancestudio: { src: '/dancestudio.png', alt: 'Dance Studio', top: '52%', left: '50%' },
       mudd: { src: '/mudd.png', alt: 'MUDD', top: '88%', left: '33%' }
     };
-
+    function showDetails(location){
+      console.log(location);
+    }
     function showLocation(locationKey) {
       const location = locations[locationKey];
       if (!location) return;
@@ -75,6 +89,7 @@
       mapMarker.style.left = location.left;
       mapMarker.hidden = false;
       mapMarker.classList.add('visible');
+      showDetails(location)
     }
 
     locationLinks.forEach(link => {
@@ -91,5 +106,6 @@
       toggleButton.textContent = sidebar.classList.contains('collapsed') ? '☰' : '×';
     });
   </script>
+
 </body>
 </html>
