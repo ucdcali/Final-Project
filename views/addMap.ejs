@@ -13,18 +13,25 @@
     <h2><%= event.event %></h2>
     <p><%= event.description %></p>
     <p><strong>Selected buildings:</strong></p>
-    <% if (!selectedLocations || selectedLocations.length === 0) { %>
+    <% if (!selectedBuildings || selectedBuildings.length === 0) { %>
       <p>No selected buildings available for this event.</p>
     <% } else { %>
       <ul>
-        <% selectedLocations.forEach(loc => { %>
+        <% selectedBuildings.forEach((loc, index) => { %>
           <li>
-            <a href="#" class="location-link" data-location="<%= loc.locationKey %>"><%= loc.name %></a>
+            <a href="#" class="location-link" data-location="<%= loc.locationKey || '' %>" data-index="<%= index %>"><%= loc.name %></a>
           </li>
         <% }) %>
       </ul>
     <% } %>
     <a href="/admin/dashboard" class="admin-login">Back to Dashboard</a>
+  </div>
+
+  <div id="roomPanel" class="room-panel hidden">
+    <h3 id="roomPanelTitle">Building rooms</h3>
+    <div id="roomList">
+      <p>Select a building to view its rooms.</p>
+    </div>
   </div>
 
 <!--Loading up the campus map-->
@@ -77,11 +84,44 @@
       mapMarker.classList.add('visible');
     }
 
+    const buildings = <%- JSON.stringify(selectedBuildings || []) %>;
+    const roomPanel = document.getElementById('roomPanel');
+    const roomPanelTitle = document.getElementById('roomPanelTitle');
+    const roomList = document.getElementById('roomList');
+
+    function showRoomPanel(index) {
+      const building = buildings[index];
+      if (!building) return;
+
+      roomPanelTitle.textContent = building.name;
+      roomList.innerHTML = '';
+
+      if (!building.rooms || building.rooms.length === 0) {
+        roomList.innerHTML = '<p>No rooms attached to this building for the event.</p>';
+      } else {
+        building.rooms.forEach((room) => {
+          const roomElement = document.createElement('div');
+          roomElement.className = 'room-item';
+          roomElement.innerHTML = `<strong>${room.name}</strong>${room.description ? `<div class="room-desc">${room.description}</div>` : ''}`;
+          roomList.appendChild(roomElement);
+        });
+      }
+
+      roomPanel.classList.remove('hidden');
+      roomPanel.classList.add('visible');
+    }
+
     locationLinks.forEach(link => {
       link.addEventListener('click', event => {
         event.preventDefault();
         const location = link.dataset.location;
-        showLocation(location);
+        const index = Number(link.dataset.index);
+        if (location) {
+          showLocation(location);
+        } else {
+          mapMarker.hidden = true;
+        }
+        showRoomPanel(index);
       });
     });
 

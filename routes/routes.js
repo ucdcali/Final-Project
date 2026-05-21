@@ -38,6 +38,7 @@ router.post("/deleteEvent", deleteEvent)
 router.post("/editEvent/:id", editEvent)
 
 // VIEW EVENT MAP
+router.get("/events/:id", viewEventMap)
 router.get("/events/:id/map", viewEventMap)
 
 // CREATE MESSAGE

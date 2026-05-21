@@ -91,6 +91,54 @@ button {
   padding-left: 60px;
 }
 
+.room-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 320px;
+  max-width: calc(100% - 40px);
+  background: rgba(255, 255, 255, 0.95);
+  color: #111;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+  display: none;
+}
+
+.room-panel.visible {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.room-panel h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.room-item {
+  margin-bottom: 12px;
+}
+
+.room-item strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.room-desc {
+  font-size: 14px;
+  color: #444;
+}
+
+#roomList p {
+  margin: 0;
+}
+
 .map-wrapper,
 #mapContainer {
   position: relative;
