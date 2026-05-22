@@ -1,6 +1,6 @@
 import express from 'express'
 export const router = express.Router()
-import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard, verifyPassword} from '../controllers/adminController.js'
+import {loadPage, createMessage, deleteMessage, editMessage, saveMessage, adminLogin, adminDashboard, verifyPassword, directDashboard} from '../controllers/adminController.js'
 import {createBuilding, deleteBuilding} from '../controllers/buildingController.js'
 import {eventForm, eventEdit, saveEventEdits, createEvent, deleteEvent, editEvent, eventLogin, viewEventMap} from '../controllers/eventController.js'
 
@@ -59,4 +59,7 @@ router.post("/users", createBuilding);
 // DELETE USER
 router.post("/users/delete/:id", deleteBuilding);
 
+//BYPASS CREATING A NEW EVENT
+router.get("/direct", directDashboard)
+router.post("/directdashboard", directDashboard)
 
